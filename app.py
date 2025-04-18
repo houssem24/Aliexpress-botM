@@ -73,11 +73,11 @@ SHORT_LINK_DOMAIN_REGEX = re.compile(r'https?://(?:s\.click\.aliexpress\.com/e/|
 
 # --- Offer Parameter Mapping ---
 OFFER_PARAMS = {
-    "coin": {"name": "🪙 Coin", "params": {"sourceType": "620%26channel=coin" , "afSmartRedirect": "y"}},
-    "super": {"name": "🔥 Super Deals", "params": {"sourceType": "562", "channel": "sd" , "afSmartRedirect": "y"}},
-    "limited": {"name": "⏳ Limited Offers", "params": {"sourceType": "561", "channel": "limitedoffers" , "afSmartRedirect": "y"}},
-    "bigsave": {"name": "💰 Big Save", "params": {"sourceType": "680", "channel": "bigSave" , "afSmartRedirect": "y"}},
-}
+    "coin": {"name": "💰 عرض العملات", "params": {"sourceType": "620", "channel": "coin" , "afSmartRedirect": "y"}},
+    "super": {"name": "🔥 💎 عرض السوبر", "params": {"sourceType": "562", "channel": "sd" , "afSmartRedirect": "y"}},
+    "limited": {"name": "♨️ عرض محدود", "params": {"sourceType": "561", "channel": "limitedoffers" , "afSmartRedirect": "y"}},
+    "bigsave": {"name": "✨التوفيرات الكبيرة Big save", "params": {"sourceType": "680", "channel": "bigSave" , "afSmartRedirect": "y"}},
+     }
 OFFER_ORDER = ["coin", "super", "limited", "bigsave"]
 
 # --- Cache Implementation with Expiry ---
@@ -638,7 +638,7 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
         else: # details_source == "None"
              message_lines.append("\n<b>Product details unavailable</b>\n")
 
-        message_lines.append("<b>Offers:</b>")
+        message_lines.append("<b>العروض:</b>")
 
         for offer_key in OFFER_ORDER:
             link = generated_links.get(offer_key)
@@ -650,22 +650,21 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
                 message_lines.append(f"{offer_name}: ❌ Failed")
 
         # Add footer text
-        message_lines.append("\n<i>By RizoZ</i>")
+        message_lines.append("\n<i>Best Deals</i>")
         response_text = "\n".join(message_lines)
 
         # --- Create Inline Keyboard ---
         keyboard = [
             [
-                InlineKeyboardButton("Choice Day", url="https://s.click.aliexpress.com/e/_oCPK1K1"),
-                InlineKeyboardButton("Best Deals", url="https://s.click.aliexpress.com/e/_onx9vR3")
+                InlineKeyboardButton("Choice Day", url="https://s.click.aliexpress.com/e/_ooEus79"),
+                InlineKeyboardButton("Best Deals", url="https://s.click.aliexpress.com/e/_olWSjGb")
             ],
             [
-                InlineKeyboardButton("GitHub", url="https://github.com/ReizoZ"),
-                InlineKeyboardButton("Discord", url="https://discord.gg/9QzECYfmw8"),
-                InlineKeyboardButton("Telegram", url="https://t.me/Aliexpress_Deal_Dz")
+            
+                InlineKeyboardButton("Telegram", url="https://t.me/BestDeelz")
             ],
             [
-                InlineKeyboardButton("☕ Buy Me Coffee", url="https://ko-fi.com/reizoz")
+                InlineKeyboardButton("تابعونا على حساباتنا 👇👇 ", url="https://linktr.ee/bestdeelz")
             ]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
