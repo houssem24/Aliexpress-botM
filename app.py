@@ -657,8 +657,8 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
         # --- Create Inline Keyboard ---
         keyboard = [
             [
-                InlineKeyboardButton("Choice Day", url="https://s.click.aliexpress.com/e/_ooEus79"),
-                InlineKeyboardButton("Best Deals", url="https://s.click.aliexpress.com/e/_olWSjGb")
+                InlineKeyboardButton("Choice Day", url="https://s.click.aliexpress.com/e/_oCQTwWP"),
+                InlineKeyboardButton("Best Deals", url="https://s.click.aliexpress.com/e/_oEX6Wo7")
             ],
             [
             
