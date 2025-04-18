@@ -90,7 +90,7 @@ def self_ping():
 
 
 
-            requests.get("https://your-app-name.herokuapp.com")  
+            requests.get("https://aliexpress-botm.onrender.com")  
 
 
 
