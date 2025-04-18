@@ -73,7 +73,7 @@ SHORT_LINK_DOMAIN_REGEX = re.compile(r'https?://(?:s\.click\.aliexpress\.com/e/|
 
 # --- Offer Parameter Mapping ---
 OFFER_PARAMS = {
-    "coin": {"name": "💰 عرض العملات", "params": {"sourceType": "620", "channel": "coin" , "afSmartRedirect": "y"}},
+    "coin": {"name": "💰 عرض العملات", "params": {"sourceType": ""620%26channel=coin" , "afSmartRedirect": "y"}},
     "super": {"name": "🔥 💎 عرض السوبر", "params": {"sourceType": "562", "channel": "sd" , "afSmartRedirect": "y"}},
     "limited": {"name": "♨️ عرض محدود", "params": {"sourceType": "561", "channel": "limitedoffers" , "afSmartRedirect": "y"}},
     "bigsave": {"name": "✨التوفيرات الكبيرة Big save", "params": {"sourceType": "680", "channel": "bigSave" , "afSmartRedirect": "y"}},
