@@ -375,11 +375,11 @@ async def fetch_product_details_v2(product_id):
         product_data = products[0] 
 
         product_info = {
-            'image_url': product_data.get('product_main_image_url'),
-            'price': product_data.get('target_sale_price'),
-            'currency': product_data.get('target_sale_price_currency', TARGET_CURRENCY),
-            'title': product_data.get('product_title', f'Product {product_id}')
-        }
+         'image_url': product_data.get('product_main_image_url'),
+         'price': f"{product_data.get('target_sale_price')}",  # استبدال رمز "USD" بـ "$"
+         'currency': product_data.get('target_sale_price_currency', TARGET_CURRENCY),
+         'title': f"✅ تخفيـــض ل: {product_data.get('product_title', f'Product {product_id}')}"  # إضافة "تخفيض ل" قبل عنوان المنتج
+}
 
         # Cache the result
         await product_cache.set(product_id, product_info)
@@ -630,15 +630,19 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
         # Add title (always available, either API, scraped, or default)
         message_lines.append(f"<b>{product_title[:250]}</b>")
 
+        # معالجة السعر لإزالة "USD" واستبدالها بـ "$"
+        if product_price:
+         price_str = f"{product_price}$"  # يتم استبدال "USD" بـ "$"
+
         # Add price only if available (from API)
         if details_source == "API" and product_price:
-             message_lines.append(f"\n<b>Sale Price:</b> {price_str}\n")
+         message_lines.append(f"\n<b>✅ السعر بعد:</b> {price_str}\n")  # النص النهائي مع السعر
         elif details_source == "Scraped":
-             message_lines.append("\n<b>Sale Price:</b> Unavailable \n") 
-        else: # details_source == "None"
-             message_lines.append("\n<b>Product details unavailable</b>\n")
+         message_lines.append("\n<b>السعر:</b> غير متوفر \n")  # النص في حال عدم وجود السعر
+        else:  # details_source == "None"
+          message_lines.append("\n<b>تفاصيل المنتج غير متوفرة</b>\n")  # النص في حال عدم توفر التفاصيل
 
-        message_lines.append("<b>العروض:</b>")
+        message_lines.append("<b>-----:</b>")
 
         for offer_key in OFFER_ORDER:
             link = generated_links.get(offer_key)
@@ -647,6 +651,8 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
                 # Ensure link is properly HTML escaped if needed (though URLs usually are safe)
                 message_lines.append(f'{offer_name}:')
                 message_lines.append(f'{link}')
+
+                
             else:
                 message_lines.append(f"{offer_name}: ❌ Failed")
 
