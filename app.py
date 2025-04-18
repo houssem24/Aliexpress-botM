@@ -642,7 +642,7 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
         else:  # details_source == "None"
           message_lines.append("\n<b>تفاصيل المنتج غير متوفرة</b>\n")  # النص في حال عدم توفر التفاصيل
 
-        message_lines.append("<b>-----:</b>")
+       #message_lines.append("<b>العروض:</b>")
 
         for offer_key in OFFER_ORDER:
             link = generated_links.get(offer_key)
