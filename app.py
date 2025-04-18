@@ -378,7 +378,7 @@ async def fetch_product_details_v2(product_id):
          'image_url': product_data.get('product_main_image_url'),
          'price': f"{product_data.get('target_sale_price')}",  # استبدال رمز "USD" بـ "$"
          'currency': product_data.get('target_sale_price_currency', TARGET_CURRENCY),
-         'title': f"✅ تخفيـــض ل: {product_data.get('product_title', f'Product {product_id}')}"  # إضافة "تخفيض ل" قبل عنوان المنتج
+         'title': f"✅ تخفيـــض لـ: {product_data.get('product_title', f'Product {product_id}')}"  # إضافة "تخفيض ل" قبل عنوان المنتج
 }
 
         # Cache the result
