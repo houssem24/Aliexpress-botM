@@ -75,7 +75,7 @@ SHORT_LINK_DOMAIN_REGEX = re.compile(r'https?://(?:s\.click\.aliexpress\.com/e/|
 OFFER_PARAMS = {
     "coin": {"name": "💰 عرض العملات", "params": {"sourceType": "620%26channel=coin" , "afSmartRedirect": "y"}},
     "super": {"name": "🔥 💎 عرض السوبر", "params": {"sourceType": "562", "channel": "sd" , "afSmartRedirect": "y"}},
-    "limited": {"name": "♨️ معرض محدود", "params": {"sourceType": "561", "channel": "limitedoffers" , "afSmartRedirect": "y"}},
+    "limited": {"name": "♨️ عرض محدود", "params": {"sourceType": "561", "channel": "limitedoffers" , "afSmartRedirect": "y"}},
     "bigsave": {"name": "✨التوفيرات الكبيرة Big save", "params": {"sourceType": "680", "channel": "bigSave" , "afSmartRedirect": "y"}},
      }
 OFFER_ORDER = ["coin", "super", "limited", "bigsave"]
@@ -645,12 +645,13 @@ async def process_product_telegram(product_id: str, base_url: str, update: Updat
             offer_name = OFFER_PARAMS[offer_key]["name"]
             if link:
                 # Ensure link is properly HTML escaped if needed (though URLs usually are safe)
-                message_lines.append(f'{offer_name}: <a href="{link}">Click Here</a>')
+                message_lines.append(f'{offer_name}:')
+                message_lines.append(f'{link}')
             else:
                 message_lines.append(f"{offer_name}: ❌ Failed")
 
         # Add footer text
-        message_lines.append("\n<i>Best Deals....</i>")
+        message_lines.append("\n<i>Best Deals</i>")
         response_text = "\n".join(message_lines)
 
         # --- Create Inline Keyboard ---
